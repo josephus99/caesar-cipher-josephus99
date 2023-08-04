@@ -1,17 +1,19 @@
 def caesar_cipher(text, shift):
-    encrypted_text = ""
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    encrypted_text = ''
+
     for char in text:
-        if char.isalpha():
-            ascii_offset = ord('A') if char.isupper() else ord('a')
-            shifted_char = chr((ord(char) - ascii_offset + shift) % 26 + ascii_offset)
-            encrypted_text += shifted_char
+        if char.islower():
+            index = (alphabet.index(char) + shift) % 26
+            encrypted_text += alphabet[index]
         else:
             encrypted_text += char
+
     return encrypted_text
 
 def main():
+    plain_text = input("Enter a plain text sentence: ").lower()
     shift = 5
-    plain_text = input("Enter the plain text sentence: ")
     encrypted_text = caesar_cipher(plain_text, shift)
     print("Encrypted text:", encrypted_text)
 
